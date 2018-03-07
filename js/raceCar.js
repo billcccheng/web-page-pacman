@@ -1,26 +1,39 @@
+(function() {
+  function init() {
+    const size = {
+        width: window.innerWidth || document.body.clientWidth,
+        height: window.innerHeight || document.body.clientHeight
+    }
 
-  const size = {
-      width: window.innerWidth || document.body.clientWidth,
-      height: window.innerHeight || document.body.clientHeight
+    createMaze();
+    const mouse = createMouse(size);
+    let speed = 4;
+    document.body.appendChild(createStopBtn());
+    document.body.appendChild(mouse);
+    document.onkeydown = moveMouse.bind(document, mouse, speed);
   }
 
-  let mouse = null;
-  window.onscroll = function () { window.scrollTo(0, 0); }
-  let speed = 2;
-  document.onkeydown = moveMouse;
-  document.body.appendChild(createStopBtn());
-  document.body.appendChild(createMouse());
 
-  function createMouse() {
+  function createMaze() {
+    const allDivs = document.body.getElementsByTagName("div");
+    for(let i in allDivs) {
+      if(typeof allDivs[i] === "object"){
+        allDivs[i].style.border = "1px dotted #000000";
+      } 
+    }
+  }
+
+  function createMouse(size) {
     mouse = document.createElement("div");
     mouse.id = "whack-a-mole-mouse";
     mouse.textContent = "@@@";
     mouse.style.fontSize = "25px";
-    mouse.style.top = getRandomInt(size.height) + "px";
-    mouse.style.left = getRandomInt(size.width)+ "px";
+    //mouse.style.top = getRandomInt(size.height) + "px";
+    //mouse.style.left = getRandomInt(size.width)+ "px";
+    mouse.style.top = "80px";
+    mouse.style.left = "60px";
     mouse.style.position = "absolute";
     mouse.style.zIndex = "10000";
-    mouse.onclick = hit;
     return mouse;
   }
 
@@ -28,17 +41,19 @@
     const btn = document.createElement("BUTTON");
     btn.innerHTML = "STOP GAME";
     btn.id = "stop-btn"
-    btn.style.top = "50px";
-    btn.style.left = "50px";
-    btn.style.position = "absolute";
+    btn.style.top = "10px";
+    btn.style.float = "right";
+    btn.style.position = "fixed";
     btn.style.zIndex = "10000";
     btn.onclick = reload;
     return btn;
   }
 
-  function moveMouse(e) {
+  function moveMouse(mouse, speed, e) {
     e = e || window.event;
-    speed += 1;
+    e.preventDefault();
+    mouse.scrollIntoView({behavior: "instant"});
+    //speed += 1;
     if (e.key === 'ArrowUp') {
       mouse.style.top = (parseInt(mouse.style.top) - speed) + "px";
     }
@@ -54,10 +69,6 @@
 
   }
 
-  function hit() {
-    console.log("HIT");
-  }
-
   function reload() {
     window.location.reload();
   }
@@ -66,3 +77,5 @@
     return Math.floor(Math.random() * Math.floor(max));
   }
 
+  init();
+})()
