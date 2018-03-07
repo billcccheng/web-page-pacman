@@ -7,6 +7,7 @@ export const whackaMole = function() {
 
   let mouse = null;
   window.onscroll = function () { window.scrollTo(0, 0); }
+  let speed = 2;
   document.onkeydown = moveMouse;
   document.body.appendChild(createStopBtn());
   document.body.appendChild(createMouse());
@@ -15,7 +16,7 @@ export const whackaMole = function() {
     mouse = document.createElement("div");
     mouse.id = "whack-a-mole-mouse";
     mouse.textContent = "@@@";
-    mouse.style.fontSize = "50px";
+    mouse.style.fontSize = "25px";
     mouse.style.top = getRandomInt(size.height) + "px";
     mouse.style.left = getRandomInt(size.width)+ "px";
     mouse.style.position = "absolute";
@@ -38,17 +39,18 @@ export const whackaMole = function() {
 
   function moveMouse(e) {
     e = e || window.event;
+    speed += 1;
     if (e.key === 'ArrowUp') {
-      mouse.style.top = (parseInt(mouse.style.top) - 10) + "px";
+      mouse.style.top = (parseInt(mouse.style.top) - speed) + "px";
     }
     else if (e.key === 'ArrowDown') {
-      mouse.style.top = (parseInt(mouse.style.top) + 10) + "px";
+      mouse.style.top = (parseInt(mouse.style.top) + speed) + "px";
     }
     else if (e.key === 'ArrowLeft') {
-      mouse.style.left = (parseInt(mouse.style.left) - 10) + "px";
+      mouse.style.left = (parseInt(mouse.style.left) - speed) + "px";
     }
     else if (e.key == 'ArrowRight') {
-      mouse.style.left = (parseInt(mouse.style.left) + 10) + "px";
+      mouse.style.left = (parseInt(mouse.style.left) + speed) + "px";
     }
 
   }
