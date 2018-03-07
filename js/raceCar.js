@@ -1,5 +1,4 @@
-/*global chrome*/
-export const whackaMole = function() {
+
   const size = {
       width: window.innerWidth || document.body.clientWidth,
       height: window.innerHeight || document.body.clientHeight
@@ -66,10 +65,4 @@ export const whackaMole = function() {
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
-}
-
-export const cleanUp = function() {
-  const mouse = document.body.getElementById("whack-a-mole-mouse");
-  mouse.remove();
-}
 
