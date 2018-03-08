@@ -2,9 +2,9 @@
   "name": "web-page-pacman",
   "version": "1.0.0",
   "description": "A pacman that runs on any webpage",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -p && cp -r build/* /vagrant/build"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/billcccheng/web-page-pacman#readme",
   "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "html-webpack-plugin": "^3.0.6",
     "path": "^0.12.7",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.10"

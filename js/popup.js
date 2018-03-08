@@ -1,5 +1,5 @@
-function runPlugin(keyword) {
-  chrome.tabs.executeScript(null, {file: 'js/pacman.js'});
+function runPlugin() {
+  chrome.tabs.executeScript(null, {file: 'pacman_bundle.js'});
 }
 
 window.onload = runPlugin();
