@@ -4,7 +4,7 @@
   "description": "A pacman that runs on any webpage",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -p && cp -r build/* /vagrant/build"
+    "buildv": "webpack -p && cp -r build/* /vagrant/build"
   },
   "repository": {
     "type": "git",

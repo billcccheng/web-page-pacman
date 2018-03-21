@@ -16,9 +16,6 @@ function init() {
   document.onkeydown = moveMouse.bind(document, pacman, speed);
 }
 
-
-
-
 function moveMouse(pacman, speed, e) {
   e = e || window.event;
   e.preventDefault();
